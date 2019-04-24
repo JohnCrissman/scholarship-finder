@@ -1,3 +1,7 @@
+<?php 
+include_once("includes/db_managment.php")
+?>
+
 <!DOCTYPE html>
     <head>
         <?php include_once("includes/headConfig.inc.php")?>
@@ -11,6 +15,8 @@
 
     <!-- ########################### START OF THE BODY CONTENT ################## -->
     <main>
+
+<?php  greeting("Marianela")?>
 
     </main>
     <!-- ########################### END OF THE BODY CONTENT ################### -->
