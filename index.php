@@ -16,7 +16,7 @@ include_once("includes/db_managment.php")
     <!-- ########################### START OF THE BODY CONTENT ################## -->
     <main>
 
-<?php  greeting("Marianela")?>
+<?php  echo greeting("Marianela")?>
 
     </main>
     <!-- ########################### END OF THE BODY CONTENT ################### -->
