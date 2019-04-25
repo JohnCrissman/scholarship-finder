@@ -1,0 +1,36 @@
+.navi-bar{
+    background: linear-gradient(rgb(253, 240, 215),white);
+    min-height: 4rem;
+}
+
+header h1{
+    padding-top: 2rem;
+    color:orange;
+}
+
+.main-body{
+    padding: 3rem;
+}
+.all-scholarship{
+    background: rgb(114, 166, 190);
+    padding: 1rem;
+    color: bisque;
+    margin-top:1rem;
+}
+
+.saved-scholarship{
+    background: rgb(114, 166, 190);
+    padding: 1rem;
+    color: bisque;
+    margin-top:1rem;
+}
+
+
+
+
+footer{
+    background: rgb(19, 14, 37);
+    color: orange;
+    padding: 2rem;
+    margin-top: 3rem;
+}
