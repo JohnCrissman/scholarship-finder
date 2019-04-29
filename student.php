@@ -58,73 +58,75 @@ if(isset($_POST['search-submit']))
         <p></p>
         <div class="container-fluid">
             <div class="row">
-                <div class="card col-lg-9" >
-                    <!-- <img src="..." class="card-img-top" alt="..."> -->
-                    <div class="card-body">
-                        <h5 class="card-title">Search</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">by GPA</h6>
-                        <p class="card-text">If you wish to search for scholarships based on the minimum GPA accepted.  Please input your gpa.  Otherwhise, all available scholarships will be shown.</p>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">
-                            <form action="" method="POST" class=" form-inline my-2 my-lg-0">
-                                    <div class=" form-group">
-                                        <label for="gpa"> Minimum GPA:&nbsp;&nbsp;</label>
-                                        <input class="form-control " type="number" step=0.1 name="gpa" name="gpa" max=4 min=1 />
-                                    </div>
-                                    <span class="col-auto" style="float: right;">
-                                        <button type="submit" name="search-submit" class="btn btn-warning my-2 my-sm-0">Search <i class="fas fa-search"></i></button>
-                                    </span>
-                                    <!-- <button type="submit" name="del-submit" class="btn btn-danger"><i class="far fa-trash-alt"></i></button> -->
-                                    <!-- <button type="submit" name="like-submit" class="btn btn-success"><i class="far fa-heart"></i></button> -->
-                            </form>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <div>
-                        <h3>All Scholarships</h3>
-                        <p>to like a scholarship click on the trash icon</p>
-                        <div class="row">                            
-                            <?php
-                            echo show_scholarship_st($mysqli);
-                            echo "Make the call to the function that will show all scholarships based on the selection"; 
-                            ?>
+                <ul class=" col-12 nav nav-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#show-all-saved" role="tab" data-toggle="tab">Saved</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#search-gpa-scholarship" role="tab" data-toggle="tab">Search by GPA</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#search-all-scholarship" role="tab" data-toggle="tab">Show All</a>
+                    </li>
+                </ul>
+
+                
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane fade show active" id="show-all-saved">
+                        <div class="col-12" style="display:block; width:100%;">
+                            <h3>All saved Scholarshihps</h3>
+                            <p>to dislike a scholarship click on the trash icon</p>
+                            <div class="row">                            
+                                <?php
+                                // echo show_saved_scholarship_st($mysqli, $userID);
+                                echo "show saved scholarships"; 
+                                ?>
+                            </div>
                         </div>
                     </div>
-                    <div>
-                        <h3>All saved Scholarshihps</h3>
-                        <p>to dislike a scholarship click on the trash icon</p>
-                        <div class="row">                            
-                            <?php
-                            echo show_saved_scholarship_st($mysqli);
-                            echo "show saved scholarships"; 
-                            ?>
+                    <div role="tabpanel" class="tab-pane fade " id="search-gpa-scholarship">
+                        <div class="card col-lg-9">
+                            <!-- <img src="..." class="card-img-top" alt="..."> -->
+                            <div class="card-body">
+                                <h5 class="card-title">Search</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">by GPA</h6>
+                                <p class="card-text">If you wish to search for scholarships based on the minimum GPA accepted.  Please input your gpa.  Otherwhise, all available scholarships will be shown.</p>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <form action="" method="POST" class=" form-inline my-2 my-lg-0">
+                                            <div class=" form-group">
+                                                <label for="gpa"> Minimum GPA:&nbsp;&nbsp;</label>
+                                                <input class="form-control " type="number" step=0.1 name="gpa" name="gpa" max=4 min=1 />
+                                            </div>
+                                            <span class="col-auto" style="float: right;">
+                                                <button type="submit" name="search-submit" class="btn btn-warning my-2 my-sm-0">Search <i class="fas fa-search"></i></button>
+                                            </span>
+                                            <!-- <button type="submit" name="del-submit" class="btn btn-danger"><i class="far fa-trash-alt"></i></button> -->
+                                            <!-- <button type="submit" name="like-submit" class="btn btn-success"><i class="far fa-heart"></i></button> -->
+                                    </form>
+                                </li>
+                            </ul>
                         </div>
                     </div>
+
+                    <div role="tabpanel" class="tab-pane fade " id="search-all-scholarship">
+                        <div class="col-12">
+                            <h3>All Scholarships</h3>
+                            <p>to like a scholarship click on the trash icon</p>
+                            <div class="row">                            
+                                <?php
+                                echo show_scholarship_st($mysqli);
+                                echo "Make the call to the function that will show all scholarships based on the selection"; 
+                                ?>
+                            </div>
+                        </div>
+                    </div>
+
+
                 </div>
             </div>
       </div>
-
-
-
-
-
-
-<?php   ?>
-
-
-
-
-
-
-
-
-
-
-
     </main>
     <!-- ########################### END OF THE BODY CONTENT ################### -->
     <?php include("includes/footer.inc.php"); ?>
