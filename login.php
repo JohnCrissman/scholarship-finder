@@ -1,56 +1,15 @@
 <?php 
+
 require_once "includes/db_managment.php";
 require_once "includes/server.php";
 
 
 
-if(isset($_POST['log-submit']))
-{
-    // echo '<pre>';
-    // var_dump($_POST);
-    // echo '</pre>';
-    if(!empty($_POST['id']) && $id=intval($_POST['id']))
-        {
-           $sql="select position from Users where userID=$id;";
-           $result = $mysqli->query($sql);
-       
-           if ($result->num_rows>=1){
-               while($row=$result->fetch_assoc())
-               {
-                //    echo '<pre>';
-                //    echo var_dump($row);
-                //    echo '</pre>';
-                   if (strcasecmp($row['position'],'student')==0){
-                        $page = 'student';
-                   }
-                   elseif (strcasecmp($row['position'],'supervisor')==0){
-                        $page = 'supervisor';
-                   }
-                   elseif (strcasecmp($row['position'],'coordinator')==0){
-                        $page = 'coordinator';
-                   }
-                   else{
-                       $message = '<p style="color:red;" class="text-center">Your user doesnot exist</p>';
-                   }
-                   $mysqli->close();
-                      header("Location: $page.php?id=$id");       
-               }
-           }else{
-               //there records returned on the query
-                   die('Invalid query: ' . $db_handler->error());
-                   $message = '<p style="color:red;" class="text-center">Select an user from the list</p>';
-           }
-        }
-    else
-        {
-            // echo 'enter proper data';
-            $message = '<p style="color:red;" class="text-center">Select an user from the list</p>';
-        }
-}
-    
+function getAllUsersfromDB($db_handler){
+// $db_handler=$mysqli;
     // get all the users to login
     $sql="select * from Users order by position DESC";
-    $result = $mysqli->query($sql);
+    $result = $db_handler->query($sql);
 
     $html_read1="";
     $html_read2="";
@@ -68,9 +27,58 @@ if(isset($_POST['log-submit']))
     }else{
             die('Invalid query: ' . $db_handler->error());
     }
-    $all_users= array($html_read1,$html_read2,$html_read3);
+    return $all_users= array($html_read1,$html_read2,$html_read3);
+}
 
+$message = '';
+if(isset($_POST['log-submit']))
+{
+    // echo '<pre>';
+    // var_dump($_POST);
+    // echo '</pre>';
+    if(!empty($_POST['id']) && $id=intval($_POST['id']))
+        {
+           $sql="select firstName, lastName, email, position from Users where userID=$id;";
+           $result = $mysqli->query($sql);
+       
+           if ($result->num_rows>=1){
+                $row=$result->fetch_assoc();
+               
+                //    echo '<pre>';
+                //    echo var_dump($row);
+                //    echo '</pre>';
 
+                if (strcasecmp($row['position'],'student')==0){
+                        $page = 'student';
+                }
+                elseif (strcasecmp($row['position'],'supervisor')==0){
+                        $page = 'supervisor';
+                }
+                elseif (strcasecmp($row['position'],'coordinator')==0){
+                        $page = 'coordinator';
+                }
+                //    else{
+                //        $message = '<p style="color:red;" class="text-center">Your user doesnot exist</p>';
+                //    }
+                $first= $row['firstName'];
+                $last= $row['lastName'];
+                $email= $row['email'];
+                $mysqli->close();
+                header("Location: $page.php?id=$id&email=$email&first=$first&last=$last");       
+               
+           }else{
+               //there records returned on the query
+                   die('Invalid query: ' . $db_handler->error());
+                   $message = '<p style="color:red;" class="text-center">Select an user from the list</p>';
+           }
+        }
+    else
+        {
+            // echo 'enter proper data';
+            $message = '<p style="color:red;" class="text-center">Select an user from the list</p>';
+        }
+}
+    
 
 
 ?>
@@ -97,6 +105,7 @@ if(isset($_POST['log-submit']))
                                 <select class="custom-select"  name="id" >
                                     <option selected>Select your user</option>
                                     <?php
+                                        $all_users=getAllUsersfromDB($mysqli);
                                         echo $all_users[0];
                                     ?>
                                 </select>
