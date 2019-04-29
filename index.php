@@ -16,12 +16,12 @@ require_once "includes/server.php";
     <!-- ########################### START OF THE BODY CONTENT ################## -->
     <main>
 
-    <a role="button" href="register.php" class="btn btn-primary">register</a>
+    <!-- <a role="button" href="register.php" class="btn btn-primary">register</a> -->
 <a role="button" href="login.php" class="btn btn-secondary">login</a>
-<a role="button" href="student.php" class="btn btn-success">student</a>
-<a role="button" href="supervisor.php" class="btn btn-danger">supervisor</a>
-<a role="button" href="coordinator.php" class="btn btn-warning">coordinator</a>
-<a role="button" href=".php" class="btn btn-info">Info</a>
+<a role="button" href="student.php" class="btn btn-success">Student</a>
+<a role="button" href="supervisor.php" class="btn btn-danger">Supervisor</a>
+<a role="button" href="coordinator.php" class="btn btn-warning">Coordinator</a>
+<!-- <a role="button" href=".php" class="btn btn-info">Info</a> -->
 
 <?php
 
