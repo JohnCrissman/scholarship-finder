@@ -2,26 +2,76 @@
 require_once "includes/db_managment.php";
 require_once "includes/server.php";
 
-if(isset($_POST['submit']))
+
+
+if(isset($_POST['log-submit']))
 {
     // echo '<pre>';
     // var_dump($_POST);
     // echo '</pre>';
-    if(!empty($_POST['email']) && !empty($_POST['pass']))
+    if(!empty($_POST['id']) && $id=intval($_POST['id']))
         {
-
-            
-           echo 'check if the person exists, if it does, redirect to his homepage (redirect(student or coordinator or supervisor).  If it doesnot exist let them know or send them to register.';
-            // $message = '<p style="color:green;" class="text-center"> <b>'.htmlentities($_POST['name']).'</b> added with ' . insert_toDB($mysqli,$new_item).'</p>';
+           $sql="select position from Users where userID=$id;";
+           $result = $mysqli->query($sql);
+       
+           if ($result->num_rows>=1){
+               while($row=$result->fetch_assoc())
+               {
+                //    echo '<pre>';
+                //    echo var_dump($row);
+                //    echo '</pre>';
+                   if (strcasecmp($row['position'],'student')==0){
+                        $page = 'student';
+                   }
+                   elseif (strcasecmp($row['position'],'supervisor')==0){
+                        $page = 'supervisor';
+                   }
+                   elseif (strcasecmp($row['position'],'coordinator')==0){
+                        $page = 'coordinator';
+                   }
+                   else{
+                       $message = '<p style="color:red;" class="text-center">Your user doesnot exist</p>';
+                   }
+                   $mysqli->close();
+                      header("Location: $page.php?id=$id");       
+               }
+           }else{
+               //there records returned on the query
+                   die('Invalid query: ' . $db_handler->error());
+                   $message = '<p style="color:red;" class="text-center">Select an user from the list</p>';
+           }
         }
     else
         {
-
-
-            echo 'enter proper data';
-            // $message = '<p style="color:red;" class="text-center">to add an item you need to fill up the information</p>';
+            // echo 'enter proper data';
+            $message = '<p style="color:red;" class="text-center">Select an user from the list</p>';
         }
 }
+    
+    // get all the users to login
+    $sql="select * from Users order by position DESC";
+    $result = $mysqli->query($sql);
+
+    $html_read1="";
+    $html_read2="";
+    $html_read3="";
+
+    if ($result->num_rows>=1){
+        while($row=$result->fetch_assoc())
+        {
+            // echo '<pre>';
+            // echo var_dump($row);
+            // echo '</pre>';
+            $html_read1.= '<option value="'.$row['userID'].'"> ('.$row['position'].') &nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;  '.$row['email'].'</option>';
+
+        }
+    }else{
+            die('Invalid query: ' . $db_handler->error());
+    }
+    $all_users= array($html_read1,$html_read2,$html_read3);
+
+
+
 
 ?>
 <!DOCTYPE html>
@@ -37,20 +87,26 @@ if(isset($_POST['submit']))
 
     <!-- ########################### START OF THE BODY CONTENT ################## -->
     <main class="main-body">
-
+    <?php echo $message ?>
     <div class="container-fluid">
                     <div class="row">
                         <form class="col-md-7" action="" method="POST">
                             <div class="form-group">
                                 <label >Email address</label>
-                                <input name="email" type="email" class="form-control" placeholder="Email...">
+                                <!-- <input name="email" type="email" class="form-control" placeholder="Email..."> -->
+                                <select class="custom-select"  name="id" >
+                                    <option selected>Select your user</option>
+                                    <?php
+                                        echo $all_users[0];
+                                    ?>
+                                </select>
                             </div>
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label >Password</label>
                                 <input name="pass" type="password" class="form-control"  placeholder="Password">
-                            </div>
+                            </div> -->
                           
-                            <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" name="log-submit" class="btn btn-primary">Submit</button>
                         </form>
                     </div>
                 </div>
@@ -60,5 +116,6 @@ if(isset($_POST['submit']))
     </main>
     <!-- ########################### END OF THE BODY CONTENT ################### -->
     <?php include("includes/footer.inc.php"); ?>
+
     </body>
 </html>
