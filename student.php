@@ -54,43 +54,39 @@ if(isset($_POST['search-submit']))
     <!-- ########################### START OF THE BODY CONTENT ################## -->
     <main class="main-body">
 
+        <h4 style="color:navy;"><?php echo $_GET['first'].'&nbsp;'.$_GET['last'] ?></h4><span class="text-muted">(Student)</span>
+        <p></p>
         <div class="container-fluid">
             <div class="row">
-                <h4 class="col-12 " style="color:navy;"> Student: <?php echo $_GET['first'].'&nbsp;'.$_GET['last'] ?></h4>
-                <div class="card col-8" >
-                            <!-- <img src="..." class="card-img-top" alt="..."> -->
-                            <div class="card-body">
-                              <h5 class="card-title">Search</h5>
-                              <h6 class="card-subtitle mb-2 text-muted">by GPA</h6>
-                              <p class="card-text">If you wish to search for scholarships based on the minimum GPA accepted.  Please input your gpa.  Otherwhise, all available scholarships will be shown.</p>
-                            </div>
-                            <ul class="list-group list-group-flush">
-                              <li class="list-group-item">
-                                  <form action="" method="POST">
-                                          <div class="col-lg-6 form-group">
-                                              <label for="gpa"> Minimum GPA: </label>
-                                              <input type="number" step=0.1 class="form-control" id="gpa" name="gpa" max=4 min=1 />
-                                              <span style="float: right;">
-                                                <button type="submit" name="search-submit" class="btn btn-warning">Search <i class="fas fa-search"></i></button>
-                                              </span>
-                                          </div>
-                                          <!-- <button type="submit" name="del-submit" class="btn btn-danger"><i class="far fa-trash-alt"></i></button> -->
-                                          <!-- <button type="submit" name="like-submit" class="btn btn-success"><i class="far fa-heart"></i></button> -->
-                                  </form>
-                              </li>
-                            </ul>
-                            <!-- <div class="card-body">
-                                <a href="#" class="card-link">Card link</a>
-                                <a href="#" class="card-link">Another link</a>
-                               
-                            </div> -->
+                <div class="card col-lg-9" >
+                    <!-- <img src="..." class="card-img-top" alt="..."> -->
+                    <div class="card-body">
+                        <h5 class="card-title">Search</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">by GPA</h6>
+                        <p class="card-text">If you wish to search for scholarships based on the minimum GPA accepted.  Please input your gpa.  Otherwhise, all available scholarships will be shown.</p>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <form action="" method="POST" class=" form-inline my-2 my-lg-0">
+                                    <div class=" form-group">
+                                        <label for="gpa"> Minimum GPA:&nbsp;&nbsp;</label>
+                                        <input class="form-control " type="number" step=0.1 name="gpa" name="gpa" max=4 min=1 />
+                                    </div>
+                                    <span class="col-auto" style="float: right;">
+                                        <button type="submit" name="search-submit" class="btn btn-warning my-2 my-sm-0">Search <i class="fas fa-search"></i></button>
+                                    </span>
+                                    <!-- <button type="submit" name="del-submit" class="btn btn-danger"><i class="far fa-trash-alt"></i></button> -->
+                                    <!-- <button type="submit" name="like-submit" class="btn btn-success"><i class="far fa-heart"></i></button> -->
+                            </form>
+                        </li>
+                    </ul>
                 </div>
             </div>
             <div class="row">
                 <div class="col-12">
                     <div>
-                        <h3>All Scholarshihps</h3>
-                        <p>one scholarship to see</p>
+                        <h3>All Scholarships</h3>
+                        <p>to like a scholarship click on the trash icon</p>
                         <div class="row">                            
                             <?php
                             echo show_scholarship_st($mysqli);
@@ -99,8 +95,8 @@ if(isset($_POST['search-submit']))
                         </div>
                     </div>
                     <div>
-                        <h3>Saved</h3>
-                        <p>one scholarship on saved</p>
+                        <h3>All saved Scholarshihps</h3>
+                        <p>to dislike a scholarship click on the trash icon</p>
                         <div class="row">                            
                             <?php
                             echo show_saved_scholarship_st($mysqli);

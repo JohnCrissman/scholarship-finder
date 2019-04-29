@@ -25,22 +25,31 @@ require_once "includes/server.php";
 
     <!-- ########################### START OF THE BODY CONTENT ################## -->
     <main class="main-body">
+    <h4 style="color:navy;"><?php echo $_GET['first'].'&nbsp;'.$_GET['last'] ?></h4><span class="text-muted">(Coordinator)</span>
+        <div class="container-fluid">
+            <div class="row">
+                <h2> Scholarships </h2>
+                <!-- new code here -->
+                
 
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+                <h2> title h2 </h2>
+                <!-- new code here -->
+                
 
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+                <h2> title h2 </h2>
+                <!-- new code here -->
+                
 
-    <!-- new code here -->
-    <!-- do supervisor first because coordinator will be the same -->
-
-
-
-
-
-
-
-
-
-
-
+            </div>
+        </div>
     </main>
     <!-- ########################### END OF THE BODY CONTENT ################### -->
     <?php include("includes/footer.inc.php"); ?>
