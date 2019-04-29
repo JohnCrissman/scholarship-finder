@@ -31,7 +31,7 @@ require_once "includes/server.php";
         echo show_users($mysqli);
         echo '<hr/>';
         echo '<h2>Scholarships</h2>';
-        echo show_scholarship($mysqli);
+        echo show_scholarship_st($mysqli);
         echo '<h2>Sponsors</h2>';
         echo show_sponsor($mysqli);
 
