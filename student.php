@@ -39,6 +39,10 @@ if(isset($_POST['search-submit']))
     // $message = '<p style="color:green;" class="text-center"> <b>'.htmlentities($_POST['name']).'</b> deleted with '.delete_fromDB($mysqli,intval($_POST['itemId'])).'.</p>';
 }
 
+$my_userID = intval($_GET['id']);
+$my_fullName = htmlentities($_GET['first']).'&nbsp;'.htmlentities($_GET['last']);
+$my_email = htmlentities($_GET['email']);
+
 ?>
 <!DOCTYPE html>
     <head>
@@ -54,7 +58,7 @@ if(isset($_POST['search-submit']))
     <!-- ########################### START OF THE BODY CONTENT ################## -->
     <main class="main-body">
 
-        <h4 style="color:navy;"><?php echo $_GET['first'].'&nbsp;'.$_GET['last'] ?></h4><span class="text-muted">(Student)</span>
+        <h4 style="color:navy;"><?php echo $my_fullName ?></h4><span class="text-muted">(Student)</span>
         <p></p>
         <div class="container-fluid">
             <div class="row">
@@ -73,13 +77,13 @@ if(isset($_POST['search-submit']))
                 
                 <div class="tab-content">
                     <div role="tabpanel" class="tab-pane fade show active" id="show-all-saved">
-                        <div class="col-12" style="display:block; width:100%;">
+                        <div class="col-12">
                             <h3>All saved Scholarshihps</h3>
                             <p>to dislike a scholarship click on the trash icon</p>
                             <div class="row">                            
                                 <?php
-                                // echo show_saved_scholarship_st($mysqli, $userID);
-                                echo "show saved scholarships"; 
+                                // echo show_saved_scholarship_st($mysqli, $my_userID);
+                                // echo "show saved scholarships"; 
                                 ?>
                             </div>
                         </div>

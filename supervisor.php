@@ -25,29 +25,50 @@ require_once "includes/server.php";
 
     <!-- ########################### START OF THE BODY CONTENT ################## -->
     <main class="main-body">
-    <h4 style="color:navy;"><?php echo $_GET['first'].'&nbsp;'.$_GET['last'] ?></h4><span class="text-muted">(Supervisor)</span>
+        <h4 style="color:navy;"><?php echo $_GET['first'].'&nbsp;'.$_GET['last'] ?></h4><span class="text-muted">(Supervisor)</span>
         <div class="container-fluid">
             <div class="row">
-                <h2> Scholarships </h2>
-                <!-- new code here -->
-                
+                <ul class=" col-12 nav nav-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#show-all-scholarships" role="tab" data-toggle="tab">Scholarships</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#show-sponsors" role="tab" data-toggle="tab">Sponsors</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#show-coordinators" role="tab" data-toggle="tab">Coordinators</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#show-students" role="tab" data-toggle="tab">Students</a>
+                    </li>
+                </ul>
 
-            </div>
-        </div>
-        <div class="container-fluid">
-            <div class="row">
-                <h2> title h2 </h2>
-                <!-- new code here -->
-                
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane fade show active" id="show-all-scholarships">
+                        <h2> Scholarships </h2>
+                    <!-- new code here -->
+                    
 
-            </div>
-        </div>
-        <div class="container-fluid">
-            <div class="row">
-                <h2> title h2 </h2>
-                <!-- new code here -->
-                
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade show" id="show-sponsors">
+                        <h2> sponsors </h2>
+                        <!-- new code here -->
 
+
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade show" id="show-coordinators">
+                        <h2> coordinators </h2>
+                        <!-- new code here -->
+
+
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade show" id="show-students">
+                        <h2> students </h2>
+                        <!-- new code here -->
+
+
+                    </div>                    
+                </div>
             </div>
         </div>
     </main>

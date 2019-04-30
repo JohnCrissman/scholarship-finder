@@ -25,29 +25,33 @@ require_once "includes/server.php";
 
     <!-- ########################### START OF THE BODY CONTENT ################## -->
     <main class="main-body">
-    <h4 style="color:navy;"><?php echo $_GET['first'].'&nbsp;'.$_GET['last'] ?></h4><span class="text-muted">(Coordinator)</span>
+        <h4 style="color:navy;"><?php echo $_GET['first'].'&nbsp;'.$_GET['last'] ?></h4><span class="text-muted">(Coordinator)</span>
+        <p></p>
         <div class="container-fluid">
             <div class="row">
-                <h2> Scholarships </h2>
-                <!-- new code here -->
-                
+                <ul class=" col-12 nav nav-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#show-all-scholarships" role="tab" data-toggle="tab">Scholarships</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#show-sponsors" role="tab" data-toggle="tab">Sponsors</a>
+                    </li>
+                </ul>
 
-            </div>
-        </div>
-        <div class="container-fluid">
-            <div class="row">
-                <h2> title h2 </h2>
-                <!-- new code here -->
-                
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane fade show active" id="show-all-scholarships">
+                        <h2> Scholarships </h2>
+                    <!-- new code here -->
+                    
 
-            </div>
-        </div>
-        <div class="container-fluid">
-            <div class="row">
-                <h2> title h2 </h2>
-                <!-- new code here -->
-                
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade show" id="show-sponsors">
+                        <h2> Sponsors </h2>
+                        <!-- new code here -->
 
+
+                    </div>                    
+                </div>
             </div>
         </div>
     </main>
