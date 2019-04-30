@@ -19,7 +19,7 @@ if(isset($_POST['search-submit']))
             $searchResults = '<div class="col-12">
                                 <h3>All Scholarships</h3>
                                 <p style="color:orange;">Scholarships which require a GPA of <b>'.number_format((float)$my_gpa, 2, '.', '').'</b> or less.</p>
-                                <p>to like a scholarship click on the trash icon</p>
+                                <p>to like a scholarship click on the heart icon</p>
                                 <div class="row">'.
                                     show_scholarship_st_gpa($mysqli,$my_gpa)
                                 .'</div>
@@ -31,7 +31,7 @@ if(isset($_POST['search-submit']))
         {
             $searchResults = '<div class="col-12">
                                 <h3>All Scholarships</h3>
-                                <p>to like a scholarship click on the trash icon</p>
+                                <p>to like a scholarship click on the heart icon</p>
                                 <div class="row">'.
                                     show_scholarship_st($mysqli)
                                 .'</div>
@@ -44,18 +44,18 @@ if(isset($_POST['search-submit']))
     // echo '<pre>';
     // var_dump($_POST);
     // echo '</pre>';
+    // echo 'delete saved scholarship from the database';
     
     $message = '<p style="color:green;" class="text-center"> <b>'.htmlentities($_POST['title']).'</b> deleted with '.deleteSavedScholarship_st($mysqli,intval($_POST['scholarshipID']),$my_userID).'.</p>';
-    // echo 'delete saved scholarship from the database';
 
 
 }else if(isset($_POST['like-submit'])){
     // echo '<pre>';
     // var_dump($_POST);
     // echo '</pre>';
+    // echo 'save a new record on the database';
     
     $message = '<p style="color:green;" class="text-center"> <b>'.htmlentities($_POST['title']).'</b> saved with '.saveScholarship_st($mysqli,intval($_POST['scholarshipID']),$my_userID).'.</p>';
-    // echo 'save a new record on the database';
 }
 
 $scholarshipIlike = show_saved_scholarship_st($mysqli, $my_userID);
@@ -96,16 +96,11 @@ $scholarshipIlike = show_saved_scholarship_st($mysqli, $my_userID);
                 <div class="col-12 tab-content">
                     <div role="tabpanel" class="tab-pane fade show active" id="search-all-scholarship">    
                         <?php
-                            if (empty($searchResults))
+                            if (!empty($searchResults))
                             {
-                                echo '<div class="col-12">
-                                    <h3>All Scholarships</h3>
-                                    <p>to like a scholarship click on the trash icon</p>
-                                    <div class="row">
-                                    </div> 
-                                    </div>';
-                            }else{
                                 echo $searchResults;
+                            }else{
+                                echo '<div class="col-12"><p> Start by searching a scholarship </p></div>';
                             }
                         ?>
                     </div>

@@ -148,7 +148,7 @@ $allSponsors = show_sponsor_co($mysqli);
                         <h2> Sponsors </h2>
                         <?php
                                echo '<div class="col-12">
-                               <p>Modify or Delete</p>
+                               <p>Modify</p>
                                <div class="row">'.
                                 $allSponsors
                                 .'</div> 

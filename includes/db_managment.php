@@ -10,8 +10,9 @@
 //  STUDENTS
 function show_saved_scholarship_st($db_handler, $userID){
     $html_read = "";
-    $sql="CALL ShowSavesToStudent($userID);";
-
+    $sql="call ShowSavesToStudent($userID);";
+ 
+    
     $result = $db_handler->query($sql);
     if ($result->num_rows>=1){
         while($row=$result->fetch_assoc())
@@ -41,7 +42,8 @@ function show_saved_scholarship_st($db_handler, $userID){
                             </div>';
         }
     }else{
-        die('Invalid query: ' . $db_handler->error());
+        $html_read = '<p>You have not saved any scholarships yet</p>';
+        // die('Invalid query: ' . $db_handler->error());
     }
     return $html_read;
     
@@ -87,7 +89,8 @@ function show_scholarship_st_gpa($db_handler, $my_gpa){
 
         }
     }else{
-            die('Invalid query: ' . $db_handler->error());
+        $html_read = '<p>No results on the search</p>';
+        // die('Invalid query: ' . $db_handler->error());
     }
     return $html_read;
 }
@@ -136,20 +139,19 @@ function show_scholarship_st($db_handler){
    </div>';
         }
     }else{
-            die('Invalid query: ' . $db_handler->error());
+        $html_read = '<p>No results available</p>';
+        // die('Invalid query: ' . $db_handler->error());
     }
     return $html_read;
 }
 
-function deleteSavedScholarship_st($db_handler, $scholarshipID, $userID){
-    // implement this
-    
+function deleteSavedScholarship_st($db_handler, $scholarshipID, $userID){  
     $sql="DELETE from StudentSaves where studentID = $userID and scholarshipID = $scholarshipID";
 
     $result = $db_handler->query($sql);
-    echo '<pre>';
-    var_dump($result);
-    echo '</pre>';
+    // echo '<pre>';
+    // var_dump($result);
+    // echo '</pre>';
 
     if ($result){
         $res = 'SUCCESS';
@@ -161,8 +163,6 @@ function deleteSavedScholarship_st($db_handler, $scholarshipID, $userID){
 }
 
 function saveScholarship_st($db_handler, $scholarshipID, $userID){
-// implement this
-
     $sql="INSERT INTO StudentSaves (studentID, scholarshipID,dateSaved) VALUES ($userID, $scholarshipID,NOW());";
     // echo $sql;
     $result = $db_handler->query($sql);
@@ -210,8 +210,8 @@ function show_users($db_handler){
                 $html_read = $html_read.'</li>';
         }
     }else{
-        echo "bad";
-            die('Invalid query: ' . $db_handler->error());
+        $html_read = '<p>No results on the search</p>';
+        // die('Invalid query: ' . $db_handler->error());
     }
     return $html_read;
 }
@@ -256,7 +256,8 @@ function show_sponsor_co($db_handler){
             </div>';
           }
     }else{
-        echo 'there is nothing';
+        $html_read = '<p>No results on the search</p>';
+        // die('Invalid query: ' . $db_handler->error());
     }
     return $html_read;
 }
@@ -311,7 +312,8 @@ function show_sponsor_su($db_handler){
                 </div>';
           }
     }else{
-        echo 'there is nothing';
+        $html_read = '<p>No results on the search</p>';
+        // die('Invalid query: ' . $db_handler->error());
     }
     return $html_read;
 }
@@ -346,7 +348,7 @@ function show_scholarship_co_su($db_handler){
                                 </form>
                                 <button class="btn btn-warning" data-toggle="modal" data-target="#editScholarship" onclick="populate_modal(\'sch-'. $row['scholarshipID'].'\')"><i class="far fa-edit"></i></button>
                         <h5 class="card-title">'. $row['title'].'</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">'. $row['spCompanyName'].'</h6>
+                        <h6 class="card-subtitle mb-2 text-muted"> <span>'. $row['spCompanyName'].'</span><span hidden>'.$row['sponsorID'].'</span></h6>
                         <p class="card-text">Min requirements:  <span>'. $row['minRequirements'].'</span><br>
                         <p class="card-text">Minimum GPA:  <span>'.number_format((float)$row['gpa'], 2, '.', '').'</span><br>
                         Award:  $<span>'. $row['amount'].'</span><br>
@@ -361,14 +363,14 @@ function show_scholarship_co_su($db_handler){
                     </div>';
         }
     }else{
-            die('Invalid query: ' . $db_handler->error());
+        $html_read = '<p>No results on the search</p>';
+        // die('Invalid query: ' . $db_handler->error());
     }
     return $html_read;
 }
 
 function show_coordinators_su($db_handler){
     $html_read = "";
-    // $sql="call SchAndSpForSupervisor();";
     $sql="SELECT * from Users where position= 'coordinator';";
     $result = $db_handler->query($sql);
     // echo '<pre>';
@@ -404,7 +406,8 @@ function show_coordinators_su($db_handler){
                     </div>';
         }
     }else{
-            die('Invalid query: ' . $db_handler->error());
+        $html_read = '<p>No results on the search</p>';
+        // die('Invalid query: ' . $db_handler->error());
     }
     return $html_read;
 }
@@ -412,7 +415,6 @@ function show_coordinators_su($db_handler){
 
 function show_students_su($db_handler){
     $html_read = "";
-    // $sql="call SchAndSpForSupervisor();";
     $sql="SELECT * from Users where position= 'student';";
     $result = $db_handler->query($sql);
     // echo '<pre>';
@@ -437,7 +439,8 @@ function show_students_su($db_handler){
                     </div>';
         }
     }else{
-            die('Invalid query: ' . $db_handler->error());
+        $html_read = '<p>No results on the search</p>';
+        // die('Invalid query: ' . $db_handler->error());
     }
     return $html_read;
 }
