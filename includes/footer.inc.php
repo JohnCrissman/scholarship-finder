@@ -17,6 +17,8 @@ function populate_modal($id){
                     let old_info = {
                         id: $id.substring(4),
                         title : elemento.querySelector('div div h5').innerText,
+                        sponsor: elemento.querySelectorAll('div div h6 span')[0].innerText,
+                        sponsorID: elemento.querySelectorAll('div div h6 span')[1].innerText,
                         minRequirements: elemento.querySelectorAll('div div p span')[0].innerText,
                         gpa: parseFloat(elemento.querySelectorAll('div div p span')[1].innerText),
                         award: parseInt(elemento.querySelectorAll('div div p span')[2].innerText),
@@ -34,16 +36,23 @@ function populate_modal($id){
                                 <form action="" method="POST" >
                                     <div class="form-group">
                                         <input name="id" type="number" value="${old_info['id']}" hidden readonly>
-                                        <label >Scholarship Title</label>
+                                        <label class="text-muted">Scholarship Title</label>
                                         <input name="title" type="text" class="form-control"  value="${old_info['title']}">
-                                        <label >Deadline</label>
+                                        <label class="text-muted">Scholarship Sponsor</label>
+                                        <select class="custom-select" name="sponsorID" id="modal-sponsor-select">
+                                            <option value="${old_info['sponsorID']}"selected>${old_info['sponsor']}</option>
+                                            
+                                        </select>
+                                        <label class="text-muted">Deadline</label>
                                         <input name="deadline" type="date" class="form-control" value="${old_info['deadline']}">
-                                        <label >Minimum Requirements</label>
-                                        <textArea class="form-control" value=""> ${old_info['minRequirements']} </textArea>
-                                        <label >Award</label>
+                                        <label class="text-muted">Minimum Requirements</label>
+                                        <textArea name="minReq" class="form-control" value=""> ${old_info['minRequirements']} </textArea>
+                                        <label class="text-muted">Award</label>
                                         <input name="award" type="number" class="form-control" value="${old_info['award']}">
-                                        <label >Minimum GPA</label>
+                                        <label class="text-muted">Minimum GPA</label>
                                         <input name="gpa" type="number" step="0.1" class="form-control" value="${old_info['gpa']}">
+                                        <label class="text-muted">Apply URL</label>
+                                        <input name="applyUrl" type="text" class="form-control" value="${old_info['applyUrl']}">
                                     </div>
                                     <p class="small">All information correct?</p>
                                     <input type="submit" name="sch-upd-submit" class="btn btn-primary" value="Save">
@@ -55,6 +64,7 @@ function populate_modal($id){
                         </div>
                     </div>`;
                     document.querySelector('#editScholarship').innerHTML = modal;
+                    fillSponsors('modal-sponsor-select',old_info['sponsorID']);
                 }
 
             function populate_modal_Sp($id){
@@ -140,4 +150,35 @@ function populate_modal($id){
                     document.querySelector('#editCoordinator').innerHTML = modal;
             }
         
+
+        function fillSponsors($objID,$sponsorID){
+            console.log('this is the sponsorID: '+$sponsorID);
+                var params = JSON.stringify({
+                    first: 'Marianela',
+                    last: 'Mendoza',
+                    email: 'jaksldjfa@akdjfc.com',
+                    'all-sponsors':'otra'
+                });
+                // console.log(params);
+                var xmlhttp = new XMLHttpRequest();                
+                xmlhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        my_data = JSON.parse(this.responseText);
+                        // console.log(my_data);
+                        all_sponsors ='';
+                        my_data.forEach( (val) => {
+                        // console.log(val);
+                        all_sponsors += '<option value="'+val[0]+'"  '+((parseInt(val[0])==parseInt($sponsorID))?' selected ': '')+'> '+val[1]+' </option>';
+                        }
+                        );
+                        console.log(all_sponsors);
+                        document.getElementById($objID).innerHTML = all_sponsors;
+                    }
+                };
+                xmlhttp.open("POST","api.php",true);
+                xmlhttp.setRequestHeader('Content-Type', 'application/json');
+                xmlhttp.send(params);
+                
+
+        }
 </script>

@@ -22,6 +22,8 @@ if(isset($_POST['sch-upd-submit']))
     $sch["deadline"] = htmlentities($_POST["deadline"]);
     $sch["award"] = intval($_POST["award"]);
     $sch["gpa"] = intval($_POST["gpa"]);
+    $sch["sponsorID"] = intval($_POST["sponsorID"]);
+    $sch["minReq"] = htmlentities($_POST["minReq"]);
 
     $message = '<p style="color:green;" class="text-center"> <b>'.htmlentities($_POST['title']).'</b> updated with '.updateScholarship($mysqli,$sch).'</p>';
 

@@ -22,6 +22,8 @@ if(isset($_POST['sch-upd-submit']))
     $sch["deadline"] = htmlentities($_POST["deadline"]);
     $sch["award"] = intval($_POST["award"]);
     $sch["gpa"] = intval($_POST["gpa"]);
+    $sch["sponsorID"] = intval($_POST["sponsorID"]);
+    $sch["minReq"] = htmlentities($_POST["minReq"]);
 
     $message = '<p style="color:green;" class="text-center"> <b>'.htmlentities($_POST['title']).'</b> updated with '.updateScholarship($mysqli,$sch).'</p>';
 
@@ -58,42 +60,6 @@ if(isset($_POST['sch-upd-submit']))
     // echo 'delete the sponsor';
 
     $message = '<p style="color:green;" class="text-center"> <b>'.htmlentities($_POST['name']).'</b> deleted with '.deleteSponsor($mysqli,intval($_POST['sponsorID'])).'</p>';
-
-}else if(isset($_POST['coo-upd-submit']))
-{
-    // echo '<pre>';
-    // var_dump($_POST);
-    // echo '</pre>';
-    // echo 'update the coordinator';
-
-    $coo['id'] = $_POST['id'];
-    $coo['firstName'] = $_POST['firstName'];
-    $coo['lastName'] = $_POST['lastName'];
-    $coo['email'] = $_POST['email'];
-
-    $message = '<p style="color:green;" class="text-center"> <b>'.htmlentities($_POST['firstName']).'&nbsp;'.htmlentities($_POST['lastName']).'</b> updated with '.updateCoordinator($mysqli,$coo).'</p>';
-
-}else if(isset($_POST['coo-del-submit']))
-{
-    // echo '<pre>';
-    // var_dump($_POST);
-    // echo '</pre>';
-    // echo 'delete the coodinator';
-    
-    $message = '<p style="color:green;" class="text-center"> <b>'.htmlentities($_POST['firstName']).'&nbsp;'.htmlentities($_POST['lastName']).'</b> deleted with '.deleteCoordinator($mysqli,intval($_POST['UserID'])).'</p>';
-}else if(isset($_POST['coo-add-submit']))
-{
-    // echo '<pre>';
-    // var_dump($_POST);
-    // echo '</pre>';
-    // echo 'add the coodinator';
-
-    $coo['firstName'] = $_POST['firstName'];
-    $coo['lastName'] = $_POST['lastName'];
-    $coo['email'] = $_POST['email'];
-
-    $message = '<p style="color:green;" class="text-center"> <b>'.htmlentities($_POST['firstName']).'&nbsp;'.htmlentities($_POST['lastName']).'</b> added with '.addCoordinator($mysqli,$coo).'</p>';
-
 
 }
 
