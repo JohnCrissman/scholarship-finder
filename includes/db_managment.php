@@ -237,30 +237,33 @@ function show_sponsor_co($db_handler){
             // var_dump($row);
             // echo '</pre>';
 
-           $html_read.=' <div class="col-lg-5 m-2"> <div class="card" >
-                <div class="card-body">
-                <form action="" method="POST">
-                        <span style="float:right;">
-                            <!-- <button type="submit" name="del-submit" class="btn btn-danger"><i class="far fa-trash-alt"></i></button> -->
-                            <input type="number" value="'. $row['sponsorID'].'" name="sponsorID" readonly hidden>
-                            <button type="submit" name="upd-submit" class="btn btn-warning"><i class="far fa-edit"></i></button>
-                            <!-- <button type="submit" name="olike-submit" class="btn btn-danger"><i class="fas fa-heart"></i></button> -->
-                        </span>
-                </form>
-                    <h5 class="card-title">'. $row['spCompanyName'].'</h5>
-                    <h6 class="card-subtitle mb-2 text-muted"> Agent: '. $row['spAgentName'].'</h6>
-                    <p class="card-text">Phone: '. $row['spPhone'].'</p>
-                    <p class="card-text">Email: '. $row['spEmail'].'</p>
-                    <p class="card-text">URL: '. $row['spURL'].'</p>
-                </div>
-                </div>
-                </div>';
+            $html_read.=' <div id="sp-'. $row['sponsorID'].'" class="col-lg-5 m-2"> <div class="card" >
+            <div class="card-body">
+
+                    <span style="float:right;">
+                    <input type="text" value="'. $row['spCompanyName'].'" name="name" readonly hidden>
+                    <input type="number" value="'. $row['sponsorID'].'" name="sponsorID" readonly hidden>
+                    <button type="submit" name="sp-upd-submit" class="btn btn-warning" onclick="populate_modal_Sp(\'sp-'.$row['sponsorID'].'\')" data-toggle="modal" data-target="#editSponsor"><i class="far fa-edit"></i></button>
+                    </span>
+
+                <h5 class="card-title">'. $row['spCompanyName'].'</h5>
+                <h6 class="card-subtitle mb-2 text-muted"> Agent: <span>'. $row['spAgentName'].'</span></h6>
+                <p class="card-text">Phone: <span>'. $row['spPhone'].'</span><br>
+                Email: <span>'. $row['spEmail'].'</span><br>
+                URL: <span>'. $row['spURL'].'</span></p>
+            </div>
+            </div>
+            </div>';
           }
     }else{
         echo 'there is nothing';
     }
     return $html_read;
 }
+
+
+
+
 
 
 
@@ -489,11 +492,11 @@ function updateSponsor($db_handler,$sp){
     $email = $sp["email"];
     $sponsorUrl = $sp["sponsorUrl"];
     $sql="UPDATE Sponsor SET spCompanyName='$name', spAgentName = '$agent', spPhone='$phone', spEmail='$email', spURL='$sponsorUrl' where sponsorID = $id;";
-    echo $sql;
+    // echo $sql;
     $result = $db_handler->query($sql);
-    echo '<pre>';
-    var_dump($result);
-    echo '</pre>';
+    // echo '<pre>';
+    // var_dump($result);
+    // echo '</pre>';
 
     if ($result){
         $res = 'SUCCESS';
