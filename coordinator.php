@@ -41,13 +41,19 @@ require_once "includes/server.php";
                 <div class="tab-content">
                     <div role="tabpanel" class="tab-pane fade show active" id="show-all-scholarships">
                         <h2> Scholarships </h2>
-                    <!-- new code here -->
+                        <?php
+                                // echo show_scholarship_su();
+                                
+                        ?>
                     
 
                     </div>
                     <div role="tabpanel" class="tab-pane fade show" id="show-sponsors">
                         <h2> Sponsors </h2>
-                        <!-- new code here -->
+                        <?php
+                                // echo show_sponsor();
+                                
+                        ?>
 
 
                     </div>                    

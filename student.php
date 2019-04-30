@@ -82,7 +82,7 @@ $my_email = htmlentities($_GET['email']);
                             <p>to dislike a scholarship click on the trash icon</p>
                             <div class="row">                            
                                 <?php
-                                // echo show_saved_scholarship_st($mysqli, $my_userID);
+                                echo show_saved_scholarship_st($mysqli, $my_userID);
                                 // echo "show saved scholarships"; 
                                 ?>
                             </div>
