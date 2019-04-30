@@ -93,7 +93,7 @@ $scholarshipIlike = show_saved_scholarship_st($mysqli, $my_userID);
                 </ul>
 
                 
-                <div class="tab-content">
+                <div class="col-12 tab-content">
                     <div role="tabpanel" class="tab-pane fade show active" id="search-all-scholarship">    
                         <?php
                             if (empty($searchResults))
