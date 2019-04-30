@@ -57,6 +57,34 @@
 
                         <div class="col-12">
                             <div class="row">
+
+
+
+                                    <div class="col-lg-5 m-2"> 
+                                        <div class="card" >
+                                            <div class="card-body">
+                                                <form action="" method="POST">
+                                                        <span style="float:right;">
+                                                        <input type="number" value="'. $row['sponsorID'].'" name="sponsorID" readonly hidden>
+                                                        <button type="submit" name="del-submit" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
+                                                        <button type="submit" name="upd-submit" class="btn btn-warning"><i class="far fa-edit"></i></button>
+                                                        <!-- <button type="submit" name="olike-submit" class="btn btn-danger"><i class="fas fa-heart"></i></button> -->
+                                                        </span>
+                                                </form>
+                                                <h5 class="card-title">'. $row['spCompanyName'].'</h5>
+                                                <h6 class="card-subtitle mb-2 text-muted"> Agent: '. $row['spAgentName'].'</h6>
+                                                <p class="card-text">Phone: '. $row['spPhone'].'</p>
+                                                <p class="card-text">Email: '. $row['spEmail'].'</p>
+                                                <p class="card-text">URL: '. $row['spURL'].'</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+
+
+
                                     <div class="card col-lg-6" >
                                             <!-- <img src="..." class="card-img-top" alt="..."> -->
                                             <div class="card-body">
