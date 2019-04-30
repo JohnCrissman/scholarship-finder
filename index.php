@@ -25,15 +25,20 @@ require_once "includes/server.php";
 
 <?php
 
-        echo greeting("Marianela");
-        echo '<hr/>';
-        echo '<h2>Users</h2>';
-        echo show_users($mysqli);
-        echo '<hr/>';
-        echo '<h2>Scholarships</h2>';
-        echo show_scholarship_st($mysqli);
-        echo '<h2>Sponsors</h2>';
-        echo show_sponsor($mysqli);
+        // echo '<h2>Users</h2>';
+        // echo show_users($mysqli);
+        // echo '<hr/>';
+        // echo '<h2>SponsorsSU </h2>';
+        // echo show_sponsor_su($mysqli);
+        // echo '<hr/>';
+        // echo '<h2>Sponsors CO</h2>';
+        // echo show_sponsor_co($mysqli);
+        // echo '<hr/>';
+        // echo '<h2>Scholarships</h2>';
+        // echo show_scholarship_st($mysqli);
+        // echo '<hr/>';
+        // echo '<h2>Scholarships</h2>';
+        // echo show_scholarship_co_su($mysqli);
 
 
 
