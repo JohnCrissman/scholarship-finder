@@ -457,7 +457,9 @@ function updateScholarship($db_handler,$sch){
     $deadline = $sch["deadline"];
     $award = $sch["award"];
     $gpa = $sch["gpa"];
-    $sql="UPDATE Scholarship SET title='$title', deadline= '$deadline', amount= $award, gpa=$gpa where scholarshipID = $id;";
+    $sponsorID = $sch["sponsorID"];
+    $minReq = $sch["minReq"];
+    $sql="UPDATE Scholarship SET title='$title', deadline= '$deadline', amount= $award, gpa=$gpa, sponsorID=$sponsorID, minRequirements='$minReq' where scholarshipID = $id;";
     // echo $sql;
     $result = $db_handler->query($sql);
 
