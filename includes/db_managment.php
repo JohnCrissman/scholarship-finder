@@ -371,7 +371,7 @@ function show_scholarship_co_su($db_handler){
 
 function show_coordinators_su($db_handler){
     $html_read = "";
-    $sql="SELECT * from Users where position= 'coordinator';";
+    $sql="SELECT * from Coordinators;";
     $result = $db_handler->query($sql);
     // echo '<pre>';
     // var_dump($result);
@@ -415,7 +415,7 @@ function show_coordinators_su($db_handler){
 
 function show_students_su($db_handler){
     $html_read = "";
-    $sql="SELECT * from Users where position= 'student';";
+    $sql="SELECT * from Students;";
     $result = $db_handler->query($sql);
     // echo '<pre>';
     // var_dump($result);
