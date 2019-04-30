@@ -129,7 +129,7 @@ function populate_modal($id){
                                     </div>
                                     <p class="small">All information correct?</p>
                                     <input type="submit" name="coo-upd-submit" class="btn btn-success" value="Save">
-                                    <input type="submit" name="coo-add-submit" class="btn btn-primary" value="Create a New">
+                                    <input type="submit" name="coo-add-submit" class="btn btn-primary" value="Save as new">
                                 </form>
                             </div>
                             <div class="modal-footer">
