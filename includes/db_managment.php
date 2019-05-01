@@ -552,7 +552,8 @@ function updateCoordinator($db_handler,$coo){
 }
 
 function deleteCoordinator($db_handler,$id){
-    $sql="DELETE from Users where userID = $id";
+    $sql="DELETE from Users where userID = $id;";
+    // echo $sql;
     $result = $db_handler->query($sql);
     // echo '<pre>';
     // var_dump($result);
